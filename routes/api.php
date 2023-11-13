@@ -15,16 +15,18 @@ use App\Http\Controllers\ConversionController;
 |
 */
 
-Route::prefix('api')->group(function () {
-    // Check si l'API fonctionne
-    Route::get('/status', [ConversionController::class, 'status']);
 
-    // Récupère la liste des paires de conversion
-    Route::get('/pairs', [ConversionController::class, 'pairs']);
-
-    // Converti une devise en une autre
-    Route::post('/convert', [ConversionController::class, 'convert']);
+// Check si l'API fonctionne
+Route::get('/status', function () {
+    return [ConversionController::class, 'status'];
 });
+
+// Récupère la liste des paires de conversion
+Route::get('/pairs', [ConversionController::class, 'pairs']);
+
+// Converti une devise en une autre
+Route::post('/convert', [ConversionController::class, 'convert']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

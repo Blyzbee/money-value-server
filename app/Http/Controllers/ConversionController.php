@@ -16,7 +16,7 @@ class ConversionController extends Controller
 
     public function convert(Request $request)
     {
-        // Valider les données de la requête
+        // Valide les données de la requête
         $this->validate($request, [
             'pair_id' => 'required|exists:pairs,id',
             'amount' => 'required|numeric',
@@ -28,7 +28,7 @@ class ConversionController extends Controller
             return response()->json(['error' => 'Invalid pair ID'], 400);
         }
 
-        // Effectuer la conversion de devises
+        // Effectue la conversion
         $result = $request->amount * $pair->conversion_rate;
 
         return response()->json(['result' => $result]);
